@@ -94,7 +94,7 @@ ynh_add_systemd_config
 ###		- As well as the section "INTEGRATE SERVICE IN YUNOHOST" in the restore script
 ###		- And the section "INTEGRATE SERVICE IN YUNOHOST" in the upgrade script
 
-yunohost service add $app --description="A short description of the app" --log="/var/log/$app/$app.log"
+yunohost service add $app --description="Decentralized content aggregator and microblogging platform" --log="/var/log/$app/$app.log"
 
 ### Additional options starting with 3.8:
 ###
@@ -145,7 +145,26 @@ ynh_script_progression --message="Adding a configuration file..." --weight=1
 ###
 ### Check the documentation of `ynh_add_config` for more info.
 
-ynh_add_config --template="some_config_file" --destination="$install_dir/some_config_file"
+###
+
+ynh_install_composer --phpversion="8.2"
+ynh_install_nodejs --nodejs_version="16"
+ynh_install_extra_app_dependencies --repo="deb https://dl.yarnpkg.com/debian/ stable main" --package="yarn" --key="https://dl.yarnpkg.com/debian/pubkey.gpg"
+ynh_use_nodejs
+# TODO: Configure .env
+# TODO: Configure php.ini
+# TODO: Configure Composer and Symfony
+# TODO: Configure Redis
+# TODO: Use Doctrine to configure PostgreSQL database
+# TODO: Build with Yarn
+# TODO: Modify nginx.conf
+# TODO: (Optional) Configure RabbitMQ
+# TODO: (Optional?) Configure Supervisor
+# TODO: Install Mercure ( https://mercure.rocks/ )
+# TODO: Use PHP to configure initial user and password, and add admin privileges
+# See https://codeberg.org/Kbin/kbin-core/wiki#user-content-install-on-bare-metal-vps
+
+#ynh_add_config --template="some_config_file" --destination="$install_dir/some_config_file"
 
 # FIXME: this should be handled by the core in the future
 # You may need to use chmod 600 instead of 400,
@@ -170,8 +189,8 @@ chown $app:$app "$install_dir/some_config_file"
 ### forms.
 
 # Installation with curl
-ynh_script_progression --message="Finalizing installation..." --weight=1
-ynh_local_curl "/INSTALL_PATH" "key1=value1" "key2=value2" "key3=value3"
+#ynh_script_progression --message="Finalizing installation..." --weight=1
+#ynh_local_curl "/INSTALL_PATH" "key1=value1" "key2=value2" "key3=value3"
 
 #=================================================
 # GENERIC FINALIZATION

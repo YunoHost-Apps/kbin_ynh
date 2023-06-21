@@ -32,8 +32,8 @@ multi_instance = true
 ldap = "false"
 # Replace with true, false, or "not_relevant". Not to confuse with the "ldap" key: the "sso" key corresponds to wether or not a user is *automatically logged-in* on the app when logged-in on the YunoHost portal.
 sso = "false"
-# FIXME: replace with an **estimate** minimum disk and RAM requirements. e.g. 20M, 400M, 1G...
-#disk = "50M"
+# Replace with an **estimate** minimum disk and RAM requirements. e.g. 20M, 400M, 1G...
+disk = "256M"
 ram.build = "512M"
 ram.runtime = "512M"
 
@@ -72,6 +72,24 @@ ram.runtime = "512M"
     help.fr = "Utilisez le champ aide pour ajouter une information à l'intention de l'administrateur à propos de cette question."
     help.es = "Use el campo de ayuda para añadir información para el administrador respecto a esta pregunta."
     type = "password"
+
+    [install.federate]
+    # this is a generic question - ask strings are automatically handled by YunoHost's core
+    # Note that user-provided passwords questions are not automatically saved as setting
+    help.en = "Do you want this instance to enable federation?"
+    help.fr = ""
+    help.es = "¿Desea que esta instancia active la federación?"
+    type = "boolean"
+    default = "true"
+
+    [install.register]
+    # this is a generic question - ask strings are automatically handled by YunoHost's core
+    # Note that user-provided passwords questions are not automatically saved as setting
+    help.en = "Do you want this instance to have open registration?"
+    help.fr = ""
+    help.es = "¿Desea que esta instancia tenga registros abiertos?"
+    type = "boolean"
+    default = "false"
 
 [resources]
     # See the packaging documentation for the full set

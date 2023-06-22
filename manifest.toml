@@ -133,7 +133,7 @@ ram.runtime = "512M"
     [resources.apt]
     # This will automatically install/uninstall the following apt packages
     # and implicitly define the $phpversion setting as 8.0 (if phpX.Y-foobar dependencies are listed)
-    packages = "git, redis-server, postgresql, postgresql-contrib, nginx, php8.2-common, php8.2-fpm, php8.2-cli, php8.2-amqp, php8.2-pgsql, php8.2-gd, php8.2-curl, php8.2-simplexml, php8.2-dom, php8.2-xml, php8.2-redis, php8.2-intl, unzip, supervisor"
+    packages = "git, redis-server, postgresql, postgresql-contrib, nginx, php8.2-common, php8.2-fpm, php8.2-cli, php8.2-amqp, php8.2-pgsql, php8.2-gd, php8.2-curl, php8.2-simplexml, php8.2-dom, php8.2-xml, php8.2-redis, php8.2-intl, unzip"
 
     [resources.database]
     # This will automatically provision/deprovison a MySQL DB and store the corresponding credentials in settings $db_user, $db_name, $db_pwd

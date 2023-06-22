@@ -1,0 +1,1 @@
+/kbin es un agregador de contenido modular y descentralizado y una plataforma de microblogging que se ejecuta en la red del Fediverso. Puede comunicarse con muchos otros servicios de ActivityPub, incluidos Mastodon, Lemmy, Pleroma, y Peertube. La iniciativa busca promover una Internet libre y abierta.

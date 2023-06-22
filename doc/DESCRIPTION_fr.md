@@ -1,1 +1,1 @@
-Ceci est une fausse description des fonctionalités de l'app
+/kbin est un agrégateur de contenu modulaire et décentralisé et une plate-forme de microblogging fonctionnant sur le réseau Fediverse. Il peut communiquer avec de nombreux autres services ActivityPub, notamment Mastodon, Lemmy, Pleroma, Peertube. L'initiative vise à promouvoir un Internet libre et ouvert.

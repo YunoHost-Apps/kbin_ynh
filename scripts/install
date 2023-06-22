@@ -30,6 +30,9 @@ source /usr/share/yunohost/helpers
 # or 'example__2', '__3', ... for multi-instance installs)
 #
 
+ynh_app_setting_set --app=$app --key=app_secret --value=$app_secret
+ynh_app_setting_set --app=$app --key=mercure_jwt_secret --value=$mercure_jwt_secret
+
 #=================================================
 # APP "BUILD" (DEPLOYING SOURCES, VENV, COMPILING ETC)
 #=================================================
@@ -83,7 +86,8 @@ ynh_add_nginx_config
 ###		- And the section "SETUP SYSTEMD" in the upgrade script
 
 # Create a dedicated systemd config
-ynh_add_systemd_config
+ynh_add_systemd_config --service=messenger-$app --template=messenger-$app.service
+ynh_add_systemd_config --service=messenger-ap --template=messenger-ap.service
 
 ### `yunohost service add` integrates a service in YunoHost. It then gets
 ### displayed in the admin interface and through the others `yunohost service` commands.
@@ -145,15 +149,16 @@ ynh_script_progression --message="Adding a configuration file..." --weight=1
 ###
 ### Check the documentation of `ynh_add_config` for more info.
 
-# TODO: Define $email
-
 # Install Node.JS
+ynh_script_progression --message="Installing Node.JS..." --weight=1
 ynh_install_nodejs --nodejs_version="$nodejsversion"
 
 #Install Yarn
+ynh_script_progression --message="Installing Yarn..." --weight=1
 ynh_install_extra_app_dependencies --repo="deb https://dl.yarnpkg.com/debian/ stable main" --package="yarn" --key="https://dl.yarnpkg.com/debian/pubkey.gpg"
 
-# TODO: Install Symfony
+# Install Symfony
+ynh_script_progression --message="Installing Symfony..." --weight=1
 ynh_install_extra_app_dependencies --repo="deb https://dl.cloudsmith.io/public/symfony/stable/deb/debian stable main" --package="symfony_cli" --key="https://dl.cloudsmith.io/public/symfony/stable/gpg.99CEF8A62216B73D.key"
 
 # Configure .env
@@ -172,8 +177,6 @@ ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/
 corepack enable
 corepack prepare yarn@stable --activate
 
-# TODO: Configure Supervisor via systemd
-
 # TODO: Install Mercure ( https://mercure.rocks/ )
 #https://github.com/dunglas/mercure/releases/download/v$mercure_version/mercure-legacy_$mercure_version_Linux_$arch.zip
 #From the AUR:
@@ -182,14 +185,14 @@ corepack prepare yarn@stable --activate
 #install -Dm 755 mercure.service "${pkgdir}"/usr/lib/systemd/system/mercure.service
 #install -Dm 644 mercure.sysusers "${pkgdir}"/usr/lib/sysusers.d/mercure.conf
 #install -Dm 644 mercure.tmpfiles "${pkgdir}"/usr/lib/tmpfiles.d/mercure.conf
-#install -Dm 644 ../Caddyfile "${pkgdir}"/etc/mercure/Caddyfile
-#install -Dm 644 ../Caddyfile.dev "${pkgdir}"/etc/mercure/Caddyfile.dev
+##install -Dm 644 ../Caddyfile "${pkgdir}"/etc/mercure/Caddyfile
+##install -Dm 644 ../Caddyfile.dev "${pkgdir}"/etc/mercure/Caddyfile.dev
 
 # Use PHP to configure initial user and password, and add admin privileges
+email=$(ynh_user_get_info --username=$admin --key="mail")
 ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/bin/console $app:user:create "$admin" "$email" "$password"
 ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/bin/console $app:user:admin "$admin"
 ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/bin/console $app:ap:keys:update
-# See https://codeberg.org/Kbin/kbin-core/wiki#user-content-install-on-bare-metal-vps
 
 # FIXME: this should be handled by the core in the future
 # You may need to use chmod 600 instead of 400,

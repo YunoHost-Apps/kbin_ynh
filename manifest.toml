@@ -77,7 +77,7 @@ ram.runtime = "512M"
     # this is a generic question - ask strings are automatically handled by YunoHost's core
     # Note that user-provided passwords questions are not automatically saved as setting
     help.en = "Do you want this instance to enable federation?"
-    help.fr = ""
+    help.fr = "Voulez-vous que cette instance ait la fédération activée?"
     help.es = "¿Desea que esta instancia active la federación?"
     type = "boolean"
     default = "true"
@@ -86,7 +86,7 @@ ram.runtime = "512M"
     # this is a generic question - ask strings are automatically handled by YunoHost's core
     # Note that user-provided passwords questions are not automatically saved as setting
     help.en = "Do you want this instance to have open registration?"
-    help.fr = ""
+    help.fr = "Voulez-vous que cette instance ait un enregistrement ouvert?"
     help.es = "¿Desea que esta instancia tenga registros abiertos?"
     type = "boolean"
     default = "false"
@@ -133,7 +133,7 @@ ram.runtime = "512M"
     [resources.apt]
     # This will automatically install/uninstall the following apt packages
     # and implicitly define the $phpversion setting as 8.0 (if phpX.Y-foobar dependencies are listed)
-    packages = "git, redis-server, postgresql, postgresql-contrib, nginx, php8.2-common, php8.2-fpm, php8.2-cli, php8.2-amqp, php8.2-pgsql, php8.2-gd, php8.2-curl, php8.2-simplexml, php8.2-dom, php8.2-xml, php8.2-redis, php8.2-intl, unzip"
+    packages = "git, redis-server, postgresql, postgresql-contrib, nginx, php8.2-common, php8.2-fpm, php8.2-cli, php8.2-amqp, php8.2-pgsql, php8.2-gd, php8.2-curl, php8.2-simplexml, php8.2-dom, php8.2-xml, php8.2-redis, php8.2-intl, unzip, supervisor"
 
     [resources.database]
     # This will automatically provision/deprovison a MySQL DB and store the corresponding credentials in settings $db_user, $db_name, $db_pwd

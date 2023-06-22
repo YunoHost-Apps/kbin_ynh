@@ -97,7 +97,7 @@ ynh_add_systemd_config --service=messenger-ap --template=messenger-ap.service
 ###		- Remove the section "REMOVE SERVICE INTEGRATION IN YUNOHOST" in the remove script
 ###		- As well as the section "INTEGRATE SERVICE IN YUNOHOST" in the restore script
 ###		- And the section "INTEGRATE SERVICE IN YUNOHOST" in the upgrade script
-
+#TODO: Add the systemd configs above as dependencies for this other service
 yunohost service add $app --description="Decentralized content aggregator and microblogging platform" --log="/var/log/$app/$app.log"
 
 ### Additional options starting with 3.8:

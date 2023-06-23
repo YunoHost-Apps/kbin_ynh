@@ -6,6 +6,7 @@
 
 nodejs_version="16"
 mercure_version="0.14.10"
+YNH_COMPOSER_VERSION="2.5.8"
 
 #=================================================
 # PERSONAL HELPERS

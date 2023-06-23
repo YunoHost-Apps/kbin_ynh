@@ -78,8 +78,19 @@ ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/
 ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/bin/console doctrine:migrations:migrate
 
 # Build with Yarn
-corepack enable
-corepack prepare yarn@stable --activate
+#corepack enable
+#corepack prepare yarn@stable --activate
+
+#=================================================
+# INSTALL KBIN
+#=================================================
+ynh_script_progression --message="Installing $app..." --weight=10
+
+pushd $install_dir
+ 	ynh_use_nodejs
+	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH yarn install
+	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH NODE_ENV=production yarn build
+popd
 
 # TODO: Install Mercure ( https://mercure.rocks/ )
 #https://github.com/dunglas/mercure/releases/download/v$mercure_version/mercure-legacy_$mercure_version_Linux_$arch.zip

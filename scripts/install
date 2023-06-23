@@ -86,8 +86,8 @@ ynh_install_composer --install_args="--prefer-dist --no-dev --no-autoloader --no
 #ynh_composer_exec --commands="clear-cache"
 
 pushd $install_dir
-	php$phpversion bin/console doctrine:database:create
-	php$phpversion bin/console doctrine:migrations:migrate
+	ynh_exec_as $app php$phpversion bin/console doctrine:database:create
+	ynh_exec_as $app php$phpversion bin/console doctrine:migrations:migrate
 popd
 
 # Use Doctrine to configure PostgreSQL database

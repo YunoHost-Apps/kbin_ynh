@@ -96,9 +96,9 @@ ram.runtime = "512M"
     extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
     extras.yarn.packages = "yarn"
 
-    extras.symfony_cli.repo = "deb https://dl.cloudsmith.io/public/symfony/stable/deb/debian stable main"
-    extras.symfony_cli.key = "https://dl.cloudsmith.io/public/symfony/stable/gpg.99CEF8A62216B73D.key"
-    extras.symfony_cli.packages = "symfony_cli"
+    #extras.symfony_cli.repo = "deb https://dl.cloudsmith.io/public/symfony/stable/deb/debian stable main"
+    #extras.symfony_cli.key = "https://dl.cloudsmith.io/public/symfony/stable/gpg.99CEF8A62216B73D.key"
+    #extras.symfony_cli.packages = "symfony_cli"
 
     [resources.database]
     type = "postgresql"

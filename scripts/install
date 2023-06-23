@@ -80,8 +80,7 @@ ynh_script_progression --message="Installing $app with Composer..." --weight=5
 
 ynh_install_composer --install_args="--prefer-dist --no-dev --no-autoloader --no-scripts --no-progress"
 
-ynh_install_composer
-#ynh_composer_exec --commands="require symfony/flex"
+#ynh_install_composer
 #ynh_composer_exec --commands="dump-env prod"
 #ynh_composer_exec --commands="install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress"
 #ynh_composer_exec --commands="clear-cache"

@@ -52,9 +52,6 @@ ram.runtime = "512M"
     type = "user"
 
     [install.password]
-    ask.en = "Use the help field to add an information for the admin about this question."
-    ask.fr = "Utilisez le champ aide pour ajouter une information à l'intention de l'administrateur à propos de cette question."
-    ask.es = "Use el campo de ayuda para añadir información para el administrador respecto a esta pregunta."
     type = "password"
 
     [install.federate]

@@ -6,7 +6,6 @@
 
 nodejs_version="16"
 mercure_version="0.14.10"
-postgresql_version="13"
 
 #=================================================
 # PERSONAL HELPERS

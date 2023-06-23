@@ -62,14 +62,14 @@ ram.runtime = "512M"
     help.fr = "Voulez-vous que cette instance ait la fédération activée?"
     help.es = "¿Desea que esta instancia active la federación?"
     type = "boolean"
-    default = "true"
+    default = true
 
     [install.register]
     help.en = "Do you want this instance to have open registration?"
     help.fr = "Voulez-vous que cette instance ait un enregistrement ouvert?"
     help.es = "¿Desea que esta instancia tenga registros abiertos?"
     type = "boolean"
-    default = "false"
+    default = false
 
 [resources]
 

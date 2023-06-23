@@ -52,22 +52,22 @@ ram.runtime = "512M"
     type = "user"
 
     [install.password]
-    help.en = "Use the help field to add an information for the admin about this question."
-    help.fr = "Utilisez le champ aide pour ajouter une information à l'intention de l'administrateur à propos de cette question."
-    help.es = "Use el campo de ayuda para añadir información para el administrador respecto a esta pregunta."
+    ask.en = "Use the help field to add an information for the admin about this question."
+    ask.fr = "Utilisez le champ aide pour ajouter une information à l'intention de l'administrateur à propos de cette question."
+    ask.es = "Use el campo de ayuda para añadir información para el administrador respecto a esta pregunta."
     type = "password"
 
     [install.federate]
-    help.en = "Do you want this instance to enable federation?"
-    help.fr = "Voulez-vous que cette instance ait la fédération activée?"
-    help.es = "¿Desea que esta instancia active la federación?"
+    ask.en = "Do you want this instance to enable federation?"
+    ask.fr = "Voulez-vous que cette instance ait la fédération activée?"
+    ask.es = "¿Desea que esta instancia active la federación?"
     type = "boolean"
     default = true
 
     [install.register]
-    help.en = "Do you want this instance to have open registration?"
-    help.fr = "Voulez-vous que cette instance ait un enregistrement ouvert?"
-    help.es = "¿Desea que esta instancia tenga registros abiertos?"
+    ask.en = "Do you want this instance to have open registration?"
+    ask.fr = "Voulez-vous que cette instance ait un enregistrement ouvert?"
+    ask.es = "¿Desea que esta instancia tenga registros abiertos?"
     type = "boolean"
     default = false
 

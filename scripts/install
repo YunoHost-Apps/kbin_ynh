@@ -101,7 +101,7 @@ popd
 #=================================================
 # INSTALL KBIN
 #=================================================
-ynh_script_progression --message="Installing $app..." --weight=10
+ynh_script_progression --message="Build with $app with Yarn..." --weight=10
 
 pushd $install_dir
  	ynh_use_nodejs

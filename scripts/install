@@ -121,10 +121,17 @@ popd
 ##install -Dm 644 ../Caddyfile "${pkgdir}"/etc/mercure/Caddyfile
 ##install -Dm 644 ../Caddyfile.dev "${pkgdir}"/etc/mercure/Caddyfile.dev
 
+pushd $install_dir
+	php$phpversion bin/console kbin:user:create $admin $email $password
+	# Grant administrator privileges
+	php$phpversion bin/console kbin:user:admin $admin
+	php$phpversion bin/console kbin:ap:keys:update
+popd
+
 # Use PHP to configure initial user and password, and add admin privileges
-ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/bin/console $app:user:create "$admin" "$email" "$password"
-ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/bin/console $app:user:admin "$admin"
-ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/bin/console $app:ap:keys:update
+#ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/bin/console $app:user:create "$admin" "$email" "$password"
+#ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/bin/console $app:user:admin "$admin"
+#ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/bin/console $app:ap:keys:update
 
 mkdir "$install_dir/public/media"
 chmod 777 "$install_dir/public/media"

@@ -15,23 +15,11 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_print_info --message="Declaring files to be backed up..."
 
-### N.B. : the following 'ynh_backup' calls are only a *declaration* of what needs
-### to be backuped and not an actual copy of any file. The actual backup that
-### creates and fill the archive with the files happens in the core after this
-### script is called. Hence ynh_backups calls takes basically 0 seconds to run.
-
 #=================================================
 # BACKUP THE APP MAIN DIR
 #=================================================
 
 ynh_backup --src_path="$install_dir"
-
-#=================================================
-# BACKUP THE DATA DIR
-#=================================================
-
-# Only relevant if there is a "data_dir" resource for this app
-ynh_backup --src_path="$data_dir" --is_big
 
 #=================================================
 # BACKUP THE NGINX CONFIGURATION
@@ -78,9 +66,6 @@ ynh_backup --src_path="/etc/$app/"
 # BACKUP THE POSTGRESQL DATABASE
 #=================================================
 ynh_print_info --message="Backing up the PostgreSQL database..."
-
-### (However, things like PostgreSQL dumps *do* take some time to run, though the
-### copy of the generated dump to the archive still happens later)
 
 #ynh_mysql dump_db --database="$db_name" > db.sql
 ynh_psql_dump_db --database="$db_name" > db.sql

@@ -45,10 +45,10 @@ ynh_add_systemd_config --service=messenger-ap --template=messenger-ap.service
 yunohost service add $app --description="Decentralized content aggregator and microblogging platform" --log="/var/log/$app/$app.log"
 
 # Use logrotate to manage application logfile(s)
-ynh_use_logrotate
+#ynh_use_logrotate
 
 # Create a dedicated Fail2Ban config
-ynh_add_fail2ban_config --logpath="/var/log/nginx/${domain}-error.log" --failregex="Regex to match into the log for a failed login"
+#ynh_add_fail2ban_config --logpath="/var/log/nginx/${domain}-error.log" --failregex="Regex to match into the log for a failed login"
 
 #=================================================
 # APP INITIAL CONFIGURATION

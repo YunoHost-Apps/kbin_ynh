@@ -1,7 +1,7 @@
 packaging_format = 2
 
 id = "kbin"
-name = "/kbin"
+name = "Kbin"
 description.en = "Decentralized content aggregator and microblogging platform"
 description.fr = "Agrégateur de contenu décentralisé et plateforme de microblogging"
 description.es = "Agregador de contenido descentralizado y plataforma de microblogging"
@@ -34,7 +34,7 @@ ram.runtime = "512M"
 
     [install.path]
     type = "path"
-    default = "/example"
+    default = "/kbin"
 
     [install.init_main_permission]
     type = "group"
@@ -83,12 +83,8 @@ ram.runtime = "512M"
 
     [resources.install_dir]
 
-    #[resources.data_dir]
-
     [resources.permissions]
     main.url = "/"
-
-    #[resources.ports]
 
     [resources.apt]
     packages = "git, postgresql, postgresql-contrib, php8.2-common, php8.2-fpm, php8.2-cli, php8.2-amqp, php8.2-pgsql, php8.2-gd, php8.2-curl, php8.2-simplexml, php8.2-dom, php8.2-xml, php8.2-redis, php8.2-intl, unzip"

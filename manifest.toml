@@ -2,9 +2,9 @@ packaging_format = 2
 
 id = "kbin"
 name = "/kbin"
-description.en = "/kbin is a decentralized content aggregator and microblogging platform running on the Fediverse network."
-description.fr = "/kbin est un agrégateur de contenu décentralisé et une plateforme de microblogging fonctionnant sur le réseau Fediverse."
-description.es = "/kbin es un agregador descentralizado de contenido y plataforma de microblogging que funciona en la red del Fediverso."
+description.en = "Decentralized content aggregator and microblogging platform"
+description.fr = "Agrégateur de contenu décentralisé et plateforme de microblogging"
+description.es = "Agregador de contenido descentralizado y plataforma de microblogging"
 
 version = "1.0~ynh1"
 

@@ -16,7 +16,7 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 ## Vue d’ensemble
 
-/kbin est un agrégateur de contenu modulaire et décentralisé et une plate-forme de microblogging fonctionnant sur le réseau Fediverse. Il peut communiquer avec de nombreux autres services ActivityPub, notamment Mastodon, Lemmy, Pleroma, Peertube. L'initiative vise à promouvoir un Internet libre et ouvert.
+Kbin est un agrégateur de contenu modulaire et décentralisé et une plate-forme de microblogging fonctionnant sur le réseau Fediverse. Il peut communiquer avec de nombreux autres services ActivityPub, notamment Mastodon, Lemmy, Pleroma, Peertube. L'initiative vise à promouvoir un Internet libre et ouvert.
 
 
 **Version incluse :** 1.0~ynh1

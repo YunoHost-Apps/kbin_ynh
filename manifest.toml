@@ -74,7 +74,7 @@ ram.runtime = "512M"
 
         [resources.sources.main]
         url = "https://codeberg.org/Kbin/kbin-core/archive/ebf68af43d6e79fb1440bacf1e4f8d061a73165a.tar.gz"
-	sha256 = "4dbfc65b0ea54ef6263ec184c62b02fd5bbc82307c7a6657fcbfcef8ff3b1f57"
+	sha256 = "490e8a2286d405544e6ff5e2df5f7978c50eed36505ce87199dabcc96696f527"
     [resources.system_user]
 
     [resources.install_dir]

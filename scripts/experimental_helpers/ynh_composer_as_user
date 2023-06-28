@@ -46,7 +46,7 @@ ynh_install_composer_as_user () {
 	phpversion="${phpversion:-7.0}"
 	install_args="${install_args:-}"
 
-	ynh_exec_as $user https://getcomposer.org/installer \
+	ynh_exec_as $user curl -sS https://getcomposer.org/installer \
 		| COMPOSER_HOME="$workdir/.composer" \
 		php -- --quiet --install-dir="$workdir" \
 		|| ynh_die "Unable to install Composer."

@@ -7,8 +7,8 @@
 #=================================================
 
 source _common.sh
-source /usr/share/yunohost/helpers
 source experimental_helpers/ynh_composer_as_user
+source /usr/share/yunohost/helpers
 
 email=$(ynh_user_get_info --username=$admin --key="mail")
 app_secret=$(ynh_string_random --length=32 --filter="0-9a-f")
@@ -74,7 +74,7 @@ ynh_script_progression --message="Installing $app with Composer..." --weight=5
 ynh_install_composer_as_user
 ynh_composer_exec_as_user --user=$app --commands="dump-env prod"
 ynh_composer_exec_as_user --user=$app --commands="install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress"
-ynh_composer_exec_as_User --user=$app --commands="clear-cache"
+ynh_composer_exec_as_user --user=$app --commands="clear-cache"
 
 # Use Doctrine to configure PostgreSQL database
 ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/bin/console doctrine:database:create

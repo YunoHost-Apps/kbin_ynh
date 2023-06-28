@@ -83,7 +83,7 @@ ram.runtime = "512M"
     main.url = "/"
 
     [resources.apt]
-    packages = "postgresql, postgresql-contrib, php8.2-common, php8.2-fpm, php8.2-cli, php8.2-amqp, php8.2-pgsql, php8.2-gd, php8.2-curl, php8.2-simplexml, php8.2-dom, php8.2-xml, php8.2-redis, php8.2-intl, unzip"
+    packages = "postgresql, postgresql-contrib, php8.2-common, php8.2-fpm, php8.2-cli, php8.2-amqp, php8.2-pgsql, php8.2-gd, php8.2-curl, php8.2-simplexml, php8.2-dom, php8.2-xml, php8.2-redis, php8.2-intl, php8.2-mbstring, unzip"
     extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
     extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
     extras.yarn.packages = "yarn"

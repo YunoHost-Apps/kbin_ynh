@@ -6,7 +6,7 @@
 # | arg: -v, --phpversion - PHP version to use with composer
 # | arg: -w, --workdir - The directory from where the command will be executed. Default $final_path.
 # | arg: -c, --commands - Commands to execute.
-ynh_composer_exec_with_user () {
+ynh_composer_exec_as_user () {
 	# Declare an array to define the options of this helper.
 	local legacy_args=uvwc
 	declare -Ar args_array=( [u]=user= [v]=phpversion= [w]=workdir= [c]=commands= )
@@ -31,7 +31,7 @@ ynh_composer_exec_with_user () {
 # | arg: -v, --phpversion - PHP version to use with composer
 # | arg: -w, --workdir - The directory from where the command will be executed. Default $final_path.
 # | arg: -a, --install_args - Additional arguments provided to the composer install. Argument --no-dev already include
-ynh_install_composer () {
+ynh_install_composer_as_user () {
 	# Declare an array to define the options of this helper.
 	local legacy_args=uvwa
 	declare -Ar args_array=( [u]=user= [v]=phpversion= [w]=workdir= [a]=install_args=)
@@ -52,6 +52,6 @@ ynh_install_composer () {
 		|| ynh_die "Unable to install Composer."
 
 	# update dependencies to create composer.lock
-	ynh_composer_exec_with_user --user=$user --phpversion="${phpversion}" --workdir="$workdir" --commands="install --no-dev $install_args" \
+	ynh_composer_exec_as_user --user=$user --phpversion="${phpversion}" --workdir="$workdir" --commands="install --no-dev $install_args" \
 		|| ynh_die "Unable to update core dependencies with Composer."
 }

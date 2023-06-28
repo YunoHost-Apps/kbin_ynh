@@ -86,7 +86,7 @@ ynh_exec_as $app corepack prepare yarn@stable --activate
 #=================================================
 # INSTALL KBIN
 #=================================================
-ynh_script_progression --message="Build with $app with Yarn..." --weight=10
+ynh_script_progression --message="Build $app with Yarn..." --weight=10
 
 pushd $install_dir
  	ynh_use_nodejs
@@ -105,20 +105,17 @@ popd
 ##install -Dm 644 ../Caddyfile "${pkgdir}"/etc/mercure/Caddyfile
 ##install -Dm 644 ../Caddyfile.dev "${pkgdir}"/etc/mercure/Caddyfile.dev
 
+# Use PHP to configure initial user and password, and add admin privileges
 pushd $install_dir
-	ynh_exec_as $app php$phpversion bin/console kbin:user:create $admin $email $password
+	ynh_exec_as $app php$phpversion -d memory_limit=-1 bin/console kbin:user:create $admin $email $password
 	# Grant administrator privileges
-	ynh_exec_as $app php$phpversion bin/console kbin:user:admin $admin
-	ynh_exec_as $app php$phpversion bin/console kbin:ap:keys:update
+	ynh_exec_as $app php$phpversion -d memory_limit=-1 bin/console kbin:user:admin $admin
+	ynh_exec_as $app php$phpversion -d memory_limit=-1 bin/console kbin:ap:keys:update
 popd
 
-# Use PHP to configure initial user and password, and add admin privileges
-#ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/bin/console $app:user:create "$admin" "$email" "$password"
-#ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/bin/console $app:user:admin "$admin"
-#ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/bin/console $app:ap:keys:update
+# TODO
 
 mkdir "$install_dir/public/media"
-#chmod 777 "$install_dir/public/media"
 chown $app:$app "$install_dir/public/media"
 
 #=================================================

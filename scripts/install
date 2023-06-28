@@ -57,14 +57,6 @@ yunohost service add $app --description="Decentralized content aggregator and mi
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-
-# Install Symfony
-#ynh_script_progression --message="Installing Symfony..." --weight=1
-#ynh_install_extra_app_dependencies --repo="deb https://dl.cloudsmith.io/public/symfony/stable/deb/debian stable main" --package="symfony_cli" --key="https://dl.cloudsmith.io/public/symfony/stable/gpg.99CEF8A62216B73D.key"
-
-#=================================================
-# ADD A CONFIGURATION
-#=================================================
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
 # Configure .env
@@ -78,18 +70,18 @@ chown $app:$app "$install_dir/.env"
 #=================================================
 ynh_script_progression --message="Installing $app with Composer..." --weight=5
 
-ynh_install_composer
-ynh_composer_exec --commands="dump-env prod"
-ynh_composer_exec --commands="install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress"
-ynh_composer_exec --commands="clear-cache"
+ynh_exec_as $app ynh_install_composer
+ynh_exec_as $app ynh_composer_exec --commands="dump-env prod"
+ynh_exec_as $app ynh_composer_exec --commands="install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress"
+ynh_exec_as $app ynh_composer_exec --commands="clear-cache"
 
 # Use Doctrine to configure PostgreSQL database
 ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/bin/console doctrine:database:create
 ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/bin/console doctrine:migrations:migrate
 
-# Build with Yarn
-#corepack enable
-#corepack prepare yarn@stable --activate
+# Prepare Corepack to build with Yarn
+ynh_exec_as $app corepack enable
+ynh_exec_as $app corepack prepare yarn@stable --activate
 
 #=================================================
 # INSTALL KBIN
@@ -98,8 +90,8 @@ ynh_script_progression --message="Build with $app with Yarn..." --weight=10
 
 pushd $install_dir
  	ynh_use_nodejs
-	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH yarn install
-	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH NODE_ENV=production yarn build
+	ynh_exec_as $app env $ynh_node_load_PATH yarn install
+	ynh_exec_as $app env $ynh_node_load_PATH NODE_ENV=production yarn build
 popd
 
 # TODO: Install Mercure ( https://mercure.rocks/ )
@@ -114,10 +106,10 @@ popd
 ##install -Dm 644 ../Caddyfile.dev "${pkgdir}"/etc/mercure/Caddyfile.dev
 
 pushd $install_dir
-	php$phpversion bin/console kbin:user:create $admin $email $password
+	ynh_exec_as $app php$phpversion bin/console kbin:user:create $admin $email $password
 	# Grant administrator privileges
-	php$phpversion bin/console kbin:user:admin $admin
-	php$phpversion bin/console kbin:ap:keys:update
+	ynh_exec_as $app php$phpversion bin/console kbin:user:admin $admin
+	ynh_exec_as $app php$phpversion bin/console kbin:ap:keys:update
 popd
 
 # Use PHP to configure initial user and password, and add admin privileges
@@ -126,7 +118,7 @@ popd
 #ynh_exec_as $app php$phpversion -d $install_dir -d memory_limit=-1 $install_dir/bin/console $app:ap:keys:update
 
 mkdir "$install_dir/public/media"
-chmod 777 "$install_dir/public/media"
+#chmod 777 "$install_dir/public/media"
 chown $app:$app "$install_dir/public/media"
 
 #=================================================

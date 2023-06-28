@@ -84,14 +84,14 @@ ram.runtime = "512M"
     main.url = "/"
 
     [resources.apt]
-    packages = "postgresql, postgresql-contrib, php8.2-common, php8.2-fpm, php8.2-cli, php8.2-amqp, php8.2-pgsql, php8.2-gd, php8.2-curl, php8.2-simplexml, php8.2-dom, php8.2-xml, php8.2-redis, php8.2-intl, unzip"
+    packages = "postgresql, postgresql-contrib, php8.2-common, php8.2-fpm, php8.2-cli, php8.2-amqp, php8.2-pgsql, php8.2-gd, php8.2-curl, php8.2-simplexml, php8.2-dom, php8.2-xml, php8.2-redis, php8.2-intl, unzip, php-symfony-console, php-symfony-mercure"
     extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
     extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
     extras.yarn.packages = "yarn"
-
-    #extras.symfony_cli.repo = "deb https://dl.cloudsmith.io/public/symfony/stable/deb/debian stable main"
-    #extras.symfony_cli.key = "https://dl.cloudsmith.io/public/symfony/stable/gpg.99CEF8A62216B73D.key"
-    #extras.symfony_cli.packages = "symfony_cli"
+    
+    extras.symfony_cli.repo = "deb https://dl.cloudsmith.io/public/symfony/stable/deb/debian bullseye main"
+    extras.symfony_cli.key = "https://dl.cloudsmith.io/public/symfony/stable/gpg.99CEF8A62216B73D.key"
+    extras.symfony_cli.packages = "symfony-cli"
 
     [resources.database]
     type = "postgresql"

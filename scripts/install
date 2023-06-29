@@ -72,7 +72,7 @@ chown $app:$app "$install_dir/.env"
 ynh_script_progression --message="Installing $app with Composer..." --weight=5
 
 #ynh_install_composer_as_user --phpversion=$phpversion --install_args="--prefer-dist --no-autoloader --no-scripts --no-progress"
-ynh_install_composer_as_user --phpversion=$phpversion --commands="dump-env prod"
+ynh_install_composer_as_user --phpversion=$phpversion --install_args="dump-env prod"
 #ynh_composer_exec_as_user --phpversion=$phpversion --commands="dump-env prod"
 ynh_composer_exec_as_user --commands="install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress"
 ynh_composer_exec_as_user --phpversion=$phpversion --commands="clear-cache"

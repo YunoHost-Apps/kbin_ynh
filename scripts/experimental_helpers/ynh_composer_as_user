@@ -44,7 +44,7 @@ ynh_install_composer_as_user () {
 	user="${user:-$app}"
 	workdir="${workdir:-$install_dir}"
 	phpversion="${phpversion:-7.0}"
-	install_args="${install_args:}"
+	install_args="${install_args:-}"
 
 	ynh_exec_as $user curl -sS https://getcomposer.org/installer \
 		| COMPOSER_HOME="$workdir/.composer" \

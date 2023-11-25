@@ -33,7 +33,7 @@ Kbin is a modular, decentralized content aggregator and microblogging platform r
 * Official user documentation: <https://codeberg.org/Kbin/kbin-core/wiki#user-content-user-guide>
 * Official admin documentation: <https://codeberg.org/Kbin/kbin-core/wiki#user-content-admin-guide>
 * Upstream app code repository: <https://codeberg.org/Kbin/kbin-core>
-* YunoHost documentation for this app: <https://yunohost.org/app_kbin>
+* YunoHost Store: <https://apps.yunohost.org/app/kbin>
 * Report a bug: <https://github.com/YunoHost-Apps/kbin_ynh/issues>
 
 ## Developer info

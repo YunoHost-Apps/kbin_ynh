@@ -33,7 +33,7 @@ Kbin est un agrégateur de contenu modulaire et décentralisé et une plate-form
 * Documentation officielle utilisateur : <https://codeberg.org/Kbin/kbin-core/wiki#user-content-user-guide>
 * Documentation officielle de l’admin : <https://codeberg.org/Kbin/kbin-core/wiki#user-content-admin-guide>
 * Dépôt de code officiel de l’app : <https://codeberg.org/Kbin/kbin-core>
-* Documentation YunoHost pour cette app : <https://yunohost.org/app_kbin>
+* YunoHost Store: <https://apps.yunohost.org/app/kbin>
 * Signaler un bug : <https://github.com/YunoHost-Apps/kbin_ynh/issues>
 
 ## Informations pour les développeurs

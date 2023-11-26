@@ -19,11 +19,14 @@ userdoc = "https://codeberg.org/Kbin/kbin-core/wiki#user-content-user-guide"
 code = "https://codeberg.org/Kbin/kbin-core"
 
 [integration]
-yunohost = ">= 11.1.21"
+yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = true
+
 ldap = false
+
 sso = false
+
 disk = "256M"
 ram.build = "512M"
 ram.runtime = "512M"

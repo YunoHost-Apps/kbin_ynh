@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# Execute a command with Composer
+#
+# usage: ynh_composer_exec_with_user [--phpversion=phpversion] [--workdir=$install_dir] --commands="commands"
+# | arg: -v, --phpversion - PHP version to use with composer
+# | arg: -w, --workdir - The directory from where the command will be executed. Default $install_dir.
+# | arg: -c, --commands - Commands to execute.
+ynh_composer_exec_as_user () {
+	# Declare an array to define the options of this helper.
+	local legacy_args=uvwc
+	declare -Ar args_array=( [u]=user= [v]=phpversion= [w]=workdir= [c]=commands= )
+	local user
+	local phpversion
+	local workdir
+	local commands
+	# Manage arguments with getopts
+	ynh_handle_getopts_args "$@"
+	user="${user:-$app}"
+	phpversion="${phpversion:-7.0}"
+	workdir="${workdir:-$install_dir}"
+
+	ynh_exec_as $user COMPOSER_HOME="$workdir/.composer" \
+		php${phpversion} "$workdir/composer.phar" $commands \
+		-d "$workdir" --quiet --no-interaction
+}
+
+# Install and initialize Composer in the given directory
+#
+# usage: ynh_install_composer_with_user [--phpversion=phpversion] [--workdir=$install_dir] [--install_args="--optimize-autoloader"]
+# | arg: -v, --phpversion - PHP version to use with composer
+# | arg: -w, --workdir - The directory from where the command will be executed. Default $install_dir.
+# | arg: -a, --install_args - Additional arguments provided to the composer install. Argument --no-dev already include
+ynh_install_composer_as_user () {
+	# Declare an array to define the options of this helper.
+	local legacy_args=uvwa
+	declare -Ar args_array=( [u]=user= [v]=phpversion= [w]=workdir= [a]=install_args= )
+	local user
+	local phpversion
+	local workdir
+	local install_args
+	# Manage arguments with getopts
+	ynh_handle_getopts_args "$@"
+	user="${user:-$app}"
+	workdir="${workdir:-$install_dir}"
+	phpversion="${phpversion:-7.0}"
+	install_args="${install_args:-}"
+
+	ynh_exec_as $user curl -sS https://getcomposer.org/installer \
+		| COMPOSER_HOME="$workdir/.composer" \
+		php -- --quiet --install-dir="$workdir" \
+		|| ynh_die "Unable to install Composer."
+
+	# update dependencies to create composer.lock
+	ynh_composer_exec_as_user --phpversion="${phpversion}" --workdir="$workdir" --commands="install --no-dev $install_args" \
+		|| ynh_die "Unable to update core dependencies with Composer."
+}

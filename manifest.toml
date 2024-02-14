@@ -77,7 +77,8 @@ ram.runtime = "512M"
 
         [resources.sources.main]
         url = "https://codeberg.org/Kbin/kbin-core/archive/57703ec5185df891dce9ff91014aa46114059df6.tar.gz"
-	    sha256 = "c2bb7306d8eed51a17b74861af93e786dcf6b6d33be7a20e4223d343f97d0415"
+    	sha256 = "c2bb7306d8eed51a17b74861af93e786dcf6b6d33be7a20e4223d343f97d0415"
+     	autoupdate.strategy = "latest_forgejo_commit"
 
     [resources.system_user]
     allow_email = true
